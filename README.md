@@ -14,6 +14,7 @@ In order to define a custom syntax, you will need three files:
   1. A YAML syntax file, named ANY_NAME.sublime-syntax
   2. A JSON color scheme file, named ANY_NAME.sublime-color-scheme
   3. A JSON settings file, named ANY_NAME.sublime-settings
+
 For my repository, ANY_NAME has been substituted with my langage, 'elite'. All three of these files should be placed in the /Packages/User folder, found somewhere in your home directory. On my Linux machine, the exact location is home/USER/.config/sublime-text-3/Packages/User. Those running Windows or OSX will need to locate the User filepath on your machines. 
 
 ### The YAML Syntax File
