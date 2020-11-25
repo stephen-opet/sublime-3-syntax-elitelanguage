@@ -1,5 +1,6 @@
 # Custom Syntax Highlighting for Sublime 3
 This repository contains a set of files used to define a custom syntax highlighting scheme for the Sublime 3 text editor
+
 The specific language, ELITE, is proprietary for a specific tool & so obscure that you are unlikely to ever touch it
 
 ### However, I have discovered a few things working on this project:
@@ -27,10 +28,24 @@ name: NAME_YOUR_SYNTAX
 file_extensions: [a,b,s]
 scope: FULL_FILEPATH_TO_YOUR_COLORSCHEME_FILE
 
-contexts:
 ```
 The 'name' value is what Sublime will list your syntax as in its internal menu. In the file extension array, list any file extensions that should be read using this syntax definition - comma separated, and dont include the '.' (i.e. [html,css,js]). The 'scope' value is the name of your color scheme file with a full filepath from the system root.
+```
+contexts:
 
+  main:
+    #include each context defined below
+    - include: VBScript
+
+  VBScript:
+    - match: '(?i)Script,(\s)*vbScript' #elite lang is case-insensitive, hence the '(?i)' flag
+      scope: script
+      push: 
+        - meta_scope: script
+        - match: '\b(?i)scriptend\b'
+          scope: script
+          pop: true 
+```
 Underneath 'contexts', you will create names for your various syntax rules. Note the spacing, colons, and hyphens used in my file - like python, the program is sensitive to these small syntaxtual details. The only mandatory scope is the 'main', wherein you will simply '- include:' every subsequent context you will define. Within the custom contexts, 'match' will contain your RegEx exression & 'scope' will map this rule to the custom style defined in your color scheme. Push/Pop are used for more complex(multiline) regex rules; they merely add/remove a scope from the stack according to the rules defined within the subcontext. 
 
 ### The JSON Color Scheme File
