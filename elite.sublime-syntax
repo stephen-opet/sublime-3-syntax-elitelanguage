@@ -1,0 +1,87 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: ELITE
+file_extensions: [te,cnp]
+scope: /home/steve/.config/sublime-text-3/Packages/User/elite.sublime-color-scheme
+
+contexts:
+
+  main:
+    #include each context defined below
+    - include: keywords
+    - include: stdout-single
+    - include: stdout-multi
+    - include: comments
+    - include: VBScript
+    - include: booleans
+    - include: variables
+    - include: modes
+
+  #A good example of a multiline syntax
+  #This language includes VBScript directly in its code
+  #Other languages could embed their syntax rules, if defined with .sublime-syntax format
+  #Unfortunately the only VBS library I could find uses depreciated .tmlanguage format,
+    #so I merely highlighted all VBS a uniform color
+  VBScript:
+    - match: '(?i)Script,(\s)*vbScript' #elite lang is case-insensitive, hence the '(?i)' flag
+      scope: script
+      push: #push 'script' style onto stack
+        - meta_scope: script
+        - match: '\b(?i)scriptend\b'
+          scope: script
+          pop: true #remove 'script' from stack when multiline section ends
+
+  keywords:
+    - match: '\b(?i)(?<!\.)(can|enb|push|pop|readdmu|readdmu>>|adi|auxport|block|bus|drp|pck|sw|swclr|track|unblock|unbus|untrack|vprog|beep|colorrgb|cpr|effects|esd|esr|file|hdr|id|inp|link|sel|tim|varf|vari|vars|vard|xsel|captar|docmd|tar|tarmap|config|findfile|getaddress|getid|jvs|load|unload|var|varop|vbs|&|#|err|erv|mbe|mpe|mse|mte|setfail|setpass|@|break|cnp|dly|end|ens|event|eventend|for|forend|break|forend|gosub|if|else|elseif|ifend|rtn|skp|stp|sub|subend|checksum)\b'
+      scope: directives
+
+  modes:
+    - match: '\b(?i)(?<!\.)(resultsformat|modes|parameters|hof|hot|pof|prb|bof|bop|fro|ime|imo|lnp|log|mmo|pan|pat|pnr|war|wat|watv|abs|bes|blk|ces|dtb|dig|int|kel|tcm|noerr|saf|goto|pause|slt|xml|xvar)\b'
+      scope: modes
+
+  booleans:
+    - match: '(?i)(true|false)'
+      scope: bool
+
+  variables:
+    - match: \'(.)*?\'
+      scope: vars
+
+  #multiline comments
+  #with conditionals to contain escape chars or variable values
+  stdout-multi:
+    - match: \{
+      scope: string
+      push:
+        - meta_scope: string
+        - match: '\\.'
+          scope: escape
+        - match: \'(.)*?\'
+          scope: vars
+        - match: \}
+          scope: string
+          pop: true
+
+  stdout-single:
+    - match: '\['
+      scope: string
+      push:
+      - meta_scope: string
+      - match: '\\.'
+        scope: escape
+      - match: \'(.)*?\'
+        scope: vars
+      - match: \n
+        scope: string
+        pop: true
+
+  comments:
+    - match: ';'
+      scope: comment
+      push:
+        - meta_scope: comment
+        - match: $\n?
+          pop: true
+
+

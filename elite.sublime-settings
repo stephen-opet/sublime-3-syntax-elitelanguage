@@ -1,0 +1,5 @@
+{
+	"extensions":["te","cnp"],
+	//force files with the above extension to use our custom color scheme file
+	"color_scheme": "Packages/User/elite.sublime-color-scheme"
+}

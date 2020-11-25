@@ -1,0 +1,56 @@
+{
+    "name": "ELITE Color Scheme",
+    "globals":
+    {
+        "background": "#282923",  //background color
+        "foreground": "#EEEEEE",  //recommend against changing this
+        "selection": "#AAAAAAAF", //highlighting color
+        "caret": "white"          //cursor color
+    },
+    "rules":
+    //create a JSON entry for each syntax type
+    [
+        {   //comments are green & italic
+            "name": "Comment",
+            "scope": "comment",
+            "foreground": "#72CF2B",
+            "font_style": "italic",
+        },
+        {   //strings are yellow
+            "name": "String",
+            "scope": "string",
+            "foreground": "hsla(50, 100%, 50%, 1)",
+        },
+        {   //directives are blue
+            "name": "Directives",
+            "scope": "directives",
+            "foreground": "#67D8EF"
+        },
+        {   //escape chars are purpleish
+            "name": "Escape Characters",
+            "scope": "escape",
+            "foreground": "#C080FF"
+        },
+        {   //booleans are red
+            "name": "Booleans",
+            "scope": "bool",
+            "foreground": "#F02453"
+        },
+        {   //variable values are pink
+            "name": "Variables",
+            "scope": "vars",
+            "foreground": "#FF00FF"
+        },
+        {   //modes are teal
+            "name": "Modes",
+            "scope": "modes",
+            "foreground": "#28C2B4"
+        },
+        {   //script entries are pink
+            "name": "Script",
+            "scope": "script",
+            "foreground": "#FF00FF",
+            "font_style": "italic"
+        }
+    ]
+}
