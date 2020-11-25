@@ -1,4 +1,4 @@
-# Custom Syntax Highlighting for Sublime 3, ELITE Language
+# Custom Syntax Highlighting for Sublime 3
 This repository contains a set of files used to define a custom syntax highlighting scheme for the Sublime 3 text editor
 The specific language, ELITE, is proprietary for a specific tool & so obscure that you are unlikely to ever touch it
 
